@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pop Movies</string>
+    <string name="detail_activity_title">Movie Detail</string>
+    <string name="action_sorting_order">Sorting Order</string>
+    <string name="action_most_popular">Most Popular</string>
+    <string name="action_highest_rated">Highest rated</string>
+</resources>
