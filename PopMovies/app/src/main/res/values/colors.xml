@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="titleBackground">#AB47BC</color>
     <color name="detailBackground">#F3E5F5</color>
+    <color name="favoriteBlockBackground">#CE93D8</color>
 </resources>

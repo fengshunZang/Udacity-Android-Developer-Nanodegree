@@ -4,4 +4,7 @@
     <string name="action_sorting_order">Sorting Order</string>
     <string name="action_most_popular">Most Popular</string>
     <string name="action_highest_rated">Highest rated</string>
+    <string name="trailer_title">Trailers: </string>
+    <string name="button_favorite">MARK AS\n FAVORITE"</string>
+    <string name="button_review">REVIEWS</string>
 </resources>
