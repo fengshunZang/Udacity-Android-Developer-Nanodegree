@@ -1,10 +1,12 @@
 package com.zangfengshun.popmovies;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,11 +44,18 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
     private MovieDbHelper mDbHelper;
 
     Activity mActivity;
+    private View mView;
+    private GridView mGridView;
+    private ListView mListView;
     private Context mContext;
+
     public enum InfoType {GENERAL, TRAILER, REVIEW}
+
     public enum OptionsItemType {POPULAR, TOP_RATE, FAVORITE}
+
     private OptionsItemType mItemType = OptionsItemType.POPULAR;
     private InfoType mType;
+    private boolean mTwoPane = false;
     private String mID = null;
 
     //Constructor
@@ -57,8 +66,20 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
         mType = type;
     }
 
-    public FetchMoviesData(Activity activity, Context context, InfoType type, String id) {
+    //Constructor for MovieDisplayFragment.
+    public FetchMoviesData(Activity activity, Context context, GridView gridView, boolean twoPane, OptionsItemType itemType, InfoType type) {
         mActivity = activity;
+        mGridView = gridView;
+        mContext = context;
+        mTwoPane = twoPane;
+        mItemType = itemType;
+        mType = type;
+    }
+
+    //Constructor for MovieDetailFragment to fetch trailer info.
+    public FetchMoviesData(Activity activity, Context context, ListView listView, InfoType type, String id) {
+        mActivity = activity;
+        mListView = listView;
         mContext = context;
         mType = type;
         mID = id;
@@ -103,16 +124,23 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
                     }
                     mMovieInfo = _movieImagePostPath;
                 }
-                GridView gridView = (GridView) mActivity.findViewById(R.id.main_activity_grid_view);
+
                 mImageAdapter = new MovieInfoAdapter(mContext, mMovieInfo);
-                gridView.setAdapter(mImageAdapter);
-                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                mGridView.setAdapter(mImageAdapter);
+                mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                         MovieItem item = mImageAdapter.getItem(position);
-                        Intent intent = new Intent(mContext, DetailActivity.class);
-                        intent.putExtra("par_key", item);
-                        mActivity.startActivity(intent);
+                        if (!mTwoPane) {
+                            Intent intent = new Intent(mContext, DetailActivity.class);
+                            intent.putExtra("par_key", item);
+                            mActivity.startActivity(intent);
+                        } else {
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelable("movie_item_key", item);
+                            MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
+                            movieDetailFragment.setArguments(bundle);
+                        }
                     }
                 });
                 break;
@@ -124,13 +152,12 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
                     Log.v(LOG_TAG, "JSONException during parsing trailer info from json file");
                 }
 
-                ListView listView = (ListView)mActivity.findViewById(R.id.trailer_list_view);
                 MovieTrailerAdapter trailerAdapter = new MovieTrailerAdapter(mContext, trailersList);
-                listView.setAdapter(trailerAdapter);
-                setListViewHeightBasedOnChildren(listView);
+                mListView.setAdapter(trailerAdapter);
+                setListViewHeightBasedOnChildren(mListView);
                 break;
             case REVIEW:
-               String reviewUrlStr = null;
+                String reviewUrlStr = null;
                 try {
                     reviewUrlStr = getReviewUrlStrFromJson(jsonStr);
                 } catch (JSONException e) {
@@ -172,7 +199,7 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
     }
 
     //This method fetches movie trailer's Info from raw json string file.
-    private ArrayList<TrailerItem> getTrailerInfoFromJson(String jsonStr) throws JSONException{
+    private ArrayList<TrailerItem> getTrailerInfoFromJson(String jsonStr) throws JSONException {
         final String TAG_RESULT = "results";
         final String TAG_KEY = "key";
         final String TAG_NAME = "name";
@@ -194,7 +221,7 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
     }
 
     //This method fetches the url string of the movie's review from raw json string.
-    private String getReviewUrlStrFromJson(String jsonStr) throws JSONException{
+    private String getReviewUrlStrFromJson(String jsonStr) throws JSONException {
         final String TAG_RESULT = "results";
         final String TAG_URL = "url";
 
@@ -209,7 +236,7 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
     }
 
     //This method fetches json string from a specific url
-    private String getJsonStrFromUrl (URL url) {
+    private String getJsonStrFromUrl(URL url) {
         String mJsonStr = "";
         HttpURLConnection httpURLConnection = null;
         InputStream is = null;
@@ -243,7 +270,7 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
     }
 
     //This method reads string from an inputStream.
-    private String getStringFromInputStream (InputStream is) {
+    private String getStringFromInputStream(InputStream is) {
         String string = "";
         BufferedReader reader = null;
         try {
@@ -271,7 +298,7 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
     }
 
     //This method returns Url determined by query type.
-    private URL getUrl(InfoType type, String id) throws MalformedURLException{
+    private URL getUrl(InfoType type, String id) throws MalformedURLException {
         final String MOVIE_SEARCH_BASE_URL = "https://api.themoviedb.org/3/movie/";
         final String TAG_POPULAR = "popular";
         final String TAG_TOP_RATED = "top_rated";
@@ -286,10 +313,10 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
             case GENERAL:
                 switch (mItemType) {
                     case POPULAR:
-                    url = new URL(MOVIE_SEARCH_BASE_URL + TAG_POPULAR + TAG_API_KEY + BuildConfig.MOVIE_DB_API_KEY);
+                        url = new URL(MOVIE_SEARCH_BASE_URL + TAG_POPULAR + TAG_API_KEY + BuildConfig.MOVIE_DB_API_KEY);
                         break;
                     case TOP_RATE:
-                    url = new URL(MOVIE_SEARCH_BASE_URL + TAG_TOP_RATED + TAG_API_KEY + BuildConfig.MOVIE_DB_API_KEY);
+                        url = new URL(MOVIE_SEARCH_BASE_URL + TAG_TOP_RATED + TAG_API_KEY + BuildConfig.MOVIE_DB_API_KEY);
                         break;
                 }
                 break;
