@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
-    private boolean mIsMostPopular = true;
+    private FetchMoviesData.OptionsItemType mItemType = FetchMoviesData.OptionsItemType.POPULAR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +28,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.most_popular:
+                mItemType = FetchMoviesData.OptionsItemType.POPULAR;
+                updateMoviesImage();
                 break;
             case R.id.highest_rated:
-                mIsMostPopular = false;
+                mItemType = FetchMoviesData.OptionsItemType.TOP_RATE;
+                updateMoviesImage();
+                break;
+            case R.id.favorite:
+                mItemType = FetchMoviesData.OptionsItemType.FAVORITE;
                 updateMoviesImage();
                 break;
         }
@@ -45,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     //This method is used to update movies image.
     private void updateMoviesImage() {
-        new FetchMoviesData(this, this, mIsMostPopular, FetchMoviesData.InfoType.GENERAL).execute();
+        new FetchMoviesData(this, this, mItemType, FetchMoviesData.InfoType.GENERAL).execute();
     }
 
 }
