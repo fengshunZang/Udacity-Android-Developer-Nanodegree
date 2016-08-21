@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,11 +22,12 @@ import com.zangfengshun.popmovies.data.MovieDbHelper;
 import com.zangfengshun.popmovies.item.MovieItem;
 
 public class MovieDetailFragment extends Fragment {
-    private final String LOG_TAG = DetailActivity.class.getSimpleName();
+    private final String LOG_TAG = MovieDetailFragment.class.getSimpleName();
     private String mCurrentItemId;
     private MovieDbHelper mDbHelper;
     private MovieItem mItemInfo;
     private Context mContext;
+    private boolean mTwoPane;
 
     private TextView mTitle;
     private ImageView mPoster;
@@ -35,6 +37,9 @@ public class MovieDetailFragment extends Fragment {
     private TextView mButtonReview;
     private TextView mButtonFavorite;
     private ListView mListView;
+    private TextView mEmptyContentIndicator;
+    private View mBlackLine;
+    private TextView mTrailers;
 
     public MovieDetailFragment() {
         // Required empty public constructor
@@ -59,39 +64,56 @@ public class MovieDetailFragment extends Fragment {
         mButtonReview = (TextView)rootView.findViewById(R.id.button_review);
         mButtonFavorite = (TextView)rootView.findViewById(R.id.button_favorite);
         mListView = (ListView)rootView.findViewById(R.id.trailer_list_view);
+        mEmptyContentIndicator = (TextView)rootView.findViewById(R.id.empty_content_indicator);
+        mBlackLine = rootView.findViewById(R.id.black_line);
+        mTrailers = (TextView) rootView.findViewById(R.id.trailers);
 
-//        mItemInfo = getArguments().getParcelable("movie_item_key");
-        return rootView;
-    }
+        if (getActivity()instanceof DetailActivity) {
+            mTwoPane = false;
+        } else {
+            mTwoPane = true;
+        }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Intent intent = getActivity().getIntent();
-        mItemInfo = intent.getParcelableExtra("par_key");
-        mCurrentItemId = mItemInfo.getID();
-
+        //If no item is selected from the left pane, a notice will show up.
+        if (getArguments() != null) {
+            mItemInfo = getArguments().getParcelable("movie_item");
+            if (mItemInfo == null) {
+                Log.v(LOG_TAG, "No movie data received in MovieDetailFragment.");
+            } else {
+                mCurrentItemId = mItemInfo.getID();
+            }
+            mEmptyContentIndicator.setVisibility(View.GONE);
+        } else {
+            mEmptyContentIndicator.setVisibility(View.VISIBLE);
+            mTitle.setVisibility(View.GONE);
+            mPoster.setVisibility(View.GONE);
+            mReleaseDate.setVisibility(View.GONE);
+            mAverageVote.setVisibility(View.GONE);
+            mPlotSynopsis.setVisibility(View.GONE);
+            mButtonFavorite.setVisibility(View.GONE);
+            mButtonReview.setVisibility(View.GONE);
+            mListView.setVisibility(View.GONE);
+            mBlackLine.setVisibility(View.GONE);
+            mTrailers.setVisibility(View.GONE);
+            return rootView;
+        }
 
         mTitle.setText(mItemInfo.getTitle());
-
         String wholePath = MovieInfoAdapter.MOVIE_IMAGE_URL_PREFIX + mItemInfo.getMovieImagePath();
         Picasso.with(mContext).load(wholePath).into(mPoster);
-
         String releaseDateText = "Release Date: \n" + mItemInfo.getReleaseDate();
         mReleaseDate.setText(releaseDateText);
-
         String voteAverageText = "Average Vote: \n" + mItemInfo.getVoteAverage() + "/10";
         mAverageVote.setText(voteAverageText);
-
         mPlotSynopsis.setText(mItemInfo.getPlotSynopsis());
 
-        new FetchMoviesData(getActivity(), getContext(), mListView, FetchMoviesData.InfoType.TRAILER, mCurrentItemId).execute();
+        new FetchMoviesData(getActivity(), getContext(), mListView, mTwoPane, FetchMoviesData.InfoType.TRAILER, mCurrentItemId).execute();
 
         //Handle click event of review textView.
         mButtonReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new FetchMoviesData(getActivity(), getContext(), mListView, FetchMoviesData.InfoType.REVIEW, mCurrentItemId).execute();
+                new FetchMoviesData(getActivity(), getContext(), mListView, mTwoPane, FetchMoviesData.InfoType.REVIEW, mCurrentItemId).execute();
             }
         });
 
@@ -106,5 +128,6 @@ public class MovieDetailFragment extends Fragment {
                 toast.show();
             }
         });
+        return rootView;
     }
 }

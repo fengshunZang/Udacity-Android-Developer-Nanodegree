@@ -1,7 +1,6 @@
 package com.zangfengshun.popmovies;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,17 +13,14 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
 import com.zangfengshun.popmovies.adapter.MovieInfoAdapter;
 import com.zangfengshun.popmovies.adapter.MovieTrailerAdapter;
 import com.zangfengshun.popmovies.data.MovieDbHelper;
 import com.zangfengshun.popmovies.item.MovieItem;
 import com.zangfengshun.popmovies.item.TrailerItem;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,6 +32,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Zang on 2016-08-02.
+ * This class is used to fetch data from internet or database in the async thread.
  */
 class FetchMoviesData extends AsyncTask<String, String, String> {
     private final String LOG_TAG = FetchMoviesData.class.getSimpleName();
@@ -44,7 +41,6 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
     private MovieDbHelper mDbHelper;
 
     Activity mActivity;
-    private View mView;
     private GridView mGridView;
     private ListView mListView;
     private Context mContext;
@@ -55,16 +51,8 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
 
     private OptionsItemType mItemType = OptionsItemType.POPULAR;
     private InfoType mType;
-    private boolean mTwoPane = false;
-    private String mID = null;
-
-    //Constructor
-    public FetchMoviesData(Activity activity, Context context, OptionsItemType itemType, InfoType type) {
-        mActivity = activity;
-        mContext = context;
-        mItemType = itemType;
-        mType = type;
-    }
+    private boolean mTwoPane;
+    private String mID;
 
     //Constructor for MovieDisplayFragment.
     public FetchMoviesData(Activity activity, Context context, GridView gridView, boolean twoPane, OptionsItemType itemType, InfoType type) {
@@ -77,12 +65,13 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
     }
 
     //Constructor for MovieDetailFragment to fetch trailer info.
-    public FetchMoviesData(Activity activity, Context context, ListView listView, InfoType type, String id) {
+    public FetchMoviesData(Activity activity, Context context, ListView listView, boolean twoPane, InfoType type, String id) {
         mActivity = activity;
         mListView = listView;
         mContext = context;
         mType = type;
         mID = id;
+        mTwoPane = twoPane;
     }
 
     //This method is used to fetch raw json string data from Internet.
@@ -110,19 +99,19 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
     //After getting data, this method shows images on main screen and handles item click event.
     @Override
     protected void onPostExecute(String jsonStr) {
-        super.onPostExecute(jsonStr);
+        //super.onPostExecute(jsonStr);
 
         switch (mType) {
             case GENERAL:
-                ArrayList<MovieItem> _movieImagePostPath = new ArrayList<>();
+                ArrayList<MovieItem> movieDataList = new ArrayList<>();
 
                 if (mItemType != OptionsItemType.FAVORITE) {
                     try {
-                        _movieImagePostPath = getMovieDataFromJson(jsonStr);
+                        movieDataList = getMovieDataFromJson(jsonStr);
                     } catch (JSONException e) {
                         Log.v(LOG_TAG, "JSONException during json data parsing");
                     }
-                    mMovieInfo = _movieImagePostPath;
+                    mMovieInfo = movieDataList;
                 }
 
                 mImageAdapter = new MovieInfoAdapter(mContext, mMovieInfo);
@@ -131,15 +120,20 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                         MovieItem item = mImageAdapter.getItem(position);
+                        //determine current state.
+                        mTwoPane = ((MainActivity) mActivity).isTwoPane();
                         if (!mTwoPane) {
                             Intent intent = new Intent(mContext, DetailActivity.class);
                             intent.putExtra("par_key", item);
                             mActivity.startActivity(intent);
+                            Log.v(LOG_TAG, "Sent intent to detailActivity.");
                         } else {
                             Bundle bundle = new Bundle();
-                            bundle.putParcelable("movie_item_key", item);
+                            bundle.putParcelable("movie_item", item);
                             MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
                             movieDetailFragment.setArguments(bundle);
+                            Log.v(LOG_TAG, "replace the container with a new fragment");
+                            ((MainActivity) mActivity).getSupportFragmentManager().beginTransaction().replace(R.id.movie_detail_container, movieDetailFragment).commit();
                         }
                     }
                 });
@@ -210,9 +204,7 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
         for (int i = 0; i < resultArray.length(); i++) {
             JSONObject currentObj = resultArray.getJSONObject(i);
             String key = currentObj.getString(TAG_KEY);
-            Log.v("trailerInfo", key);
             String name = currentObj.getString(TAG_NAME);
-            Log.v("trailerInfo", name);
 
             TrailerItem item = new TrailerItem(key, name);
             trailerData.add(item);

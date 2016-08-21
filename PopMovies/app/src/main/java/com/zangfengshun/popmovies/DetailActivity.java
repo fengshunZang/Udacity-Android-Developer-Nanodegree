@@ -26,10 +26,19 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        if (savedInstanceState == null) {
+
+        if (getIntent() != null) {
+            //Get extra from intent and pass it to fragment as arguments.
+            MovieItem item = getIntent().getParcelableExtra("par_key");
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("movie_item", item);
+            MovieDetailFragment detailFragment = new MovieDetailFragment();
+            detailFragment.setArguments(bundle);
+
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.movie_detail_container, new MovieDetailFragment())
+                    .add(R.id.movie_detail_container, detailFragment)
                     .commit();
+
         }
     }
 }

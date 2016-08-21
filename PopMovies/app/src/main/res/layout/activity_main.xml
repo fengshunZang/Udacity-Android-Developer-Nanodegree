@@ -5,6 +5,5 @@
     android:name="com.zangfengshun.popmovies.MovieDisplayFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     tools:layout="@android:layout/list_content" />
 

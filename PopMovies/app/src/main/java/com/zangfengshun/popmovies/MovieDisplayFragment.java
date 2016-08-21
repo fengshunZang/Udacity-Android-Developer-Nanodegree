@@ -33,9 +33,11 @@ public class MovieDisplayFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_movie_display, container, false);
+        mTwoPane = ((MainActivity) getActivity()).isTwoPane();
+
         mGridView = (GridView) rootView.findViewById(R.id.main_activity_grid_view);
-       // mTwoPane = getArguments().getBoolean("twoPane");
-       return rootView;
+        updateMoviesImage();
+        return rootView;
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -62,15 +64,11 @@ public class MovieDisplayFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.v(LOG_TAG, "prepare to start fragment11");
-        updateMoviesImage();
-        if (getView() == null) {
-            Log.v(LOG_TAG, "getView() returns null");
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        updateMoviesImage();
+//    }
 
     //This method is used to update movies image.
     public void updateMoviesImage() {

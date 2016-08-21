@@ -25,7 +25,6 @@ public class MovieTrailerAdapter extends ArrayAdapter<TrailerItem> {
 
     public MovieTrailerAdapter(Context context, ArrayList<TrailerItem> objects) {
         super(context, 0, objects);
-        Log.v("Trailer Adapter", "constructor");
     }
 
     @Override
@@ -36,7 +35,6 @@ public class MovieTrailerAdapter extends ArrayAdapter<TrailerItem> {
         }
         TrailerItem currentItem = getItem(position);
         mYoutubeUrl = YOUTUBE_BASE_URL + currentItem.getKey();
-        Log.v("TrailerAdapter", mYoutubeUrl);
 
         ImageView trailerImage = (ImageView)listView.findViewById(R.id.trailer_player);
         trailerImage.setImageResource(R.drawable.play_button);
