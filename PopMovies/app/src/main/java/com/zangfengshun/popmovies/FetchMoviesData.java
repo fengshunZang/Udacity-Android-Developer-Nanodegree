@@ -46,7 +46,6 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
     private Context mContext;
 
     public enum InfoType {GENERAL, TRAILER, REVIEW}
-
     public enum OptionsItemType {POPULAR, TOP_RATE, FAVORITE}
 
     private OptionsItemType mItemType = OptionsItemType.POPULAR;
@@ -55,23 +54,21 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
     private String mID;
 
     //Constructor for MovieDisplayFragment.
-    public FetchMoviesData(Activity activity, Context context, GridView gridView, boolean twoPane, OptionsItemType itemType, InfoType type) {
+    public FetchMoviesData(Activity activity, Context context, GridView gridView, OptionsItemType itemType, InfoType type) {
         mActivity = activity;
         mGridView = gridView;
         mContext = context;
-        mTwoPane = twoPane;
         mItemType = itemType;
         mType = type;
     }
 
     //Constructor for MovieDetailFragment to fetch trailer info.
-    public FetchMoviesData(Activity activity, Context context, ListView listView, boolean twoPane, InfoType type, String id) {
+    public FetchMoviesData(Activity activity, Context context, ListView listView, InfoType type, String id) {
         mActivity = activity;
         mListView = listView;
         mContext = context;
         mType = type;
         mID = id;
-        mTwoPane = twoPane;
     }
 
     //This method is used to fetch raw json string data from Internet.
@@ -316,7 +313,9 @@ class FetchMoviesData extends AsyncTask<String, String, String> {
                 url = new URL(MOVIE_SEARCH_BASE_URL + id + TAG_TRAILER + TAG_API_KEY + BuildConfig.MOVIE_DB_API_KEY);
                 break;
             case REVIEW:
-                url = new URL(MOVIE_SEARCH_BASE_URL + id + TAG_REVIEW + TAG_API_KEY + BuildConfig.MOVIE_DB_API_KEY);
+                String reviewUrl = MOVIE_SEARCH_BASE_URL + id + TAG_REVIEW + TAG_API_KEY + BuildConfig.MOVIE_DB_API_KEY;
+                url = new URL(reviewUrl);
+                Log.v(LOG_TAG, "Movie Review URL is: " + reviewUrl);
                 break;
         }
 

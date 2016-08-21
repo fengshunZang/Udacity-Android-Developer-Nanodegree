@@ -43,7 +43,12 @@ public class MovieTrailerAdapter extends ArrayAdapter<TrailerItem> {
             public void onClick(View view) {
                     Intent intent = new Intent(Intent.ACTION_VIEW,
                             Uri.parse(mYoutubeUrl));
+
+                    //Verify that the intent will resolve to an activity.
+                if (intent.resolveActivity(getContext().getPackageManager()) != null) {
                     getContext().startActivity(intent);
+                }
+
             }
         });
 

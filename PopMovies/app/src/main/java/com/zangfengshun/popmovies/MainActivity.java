@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
    private boolean mTwoPane = false;
     //private FetchMoviesData.OptionsItemType mItemType = FetchMoviesData.OptionsItemType.POPULAR;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

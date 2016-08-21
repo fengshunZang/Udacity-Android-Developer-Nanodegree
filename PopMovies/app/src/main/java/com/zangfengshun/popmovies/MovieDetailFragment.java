@@ -107,13 +107,13 @@ public class MovieDetailFragment extends Fragment {
         mAverageVote.setText(voteAverageText);
         mPlotSynopsis.setText(mItemInfo.getPlotSynopsis());
 
-        new FetchMoviesData(getActivity(), getContext(), mListView, mTwoPane, FetchMoviesData.InfoType.TRAILER, mCurrentItemId).execute();
+        new FetchMoviesData(getActivity(), getContext(), mListView, FetchMoviesData.InfoType.TRAILER, mCurrentItemId).execute();
 
         //Handle click event of review textView.
         mButtonReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new FetchMoviesData(getActivity(), getContext(), mListView, mTwoPane, FetchMoviesData.InfoType.REVIEW, mCurrentItemId).execute();
+                new FetchMoviesData(getActivity(), getContext(), mListView, FetchMoviesData.InfoType.REVIEW, mCurrentItemId).execute();
             }
         });
 
