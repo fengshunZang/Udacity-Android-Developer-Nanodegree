@@ -18,7 +18,7 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'MOVIE_DB_API_KEY', '"92a687e89730ebbc8b4730e76f49cb5b"'
+        it.buildConfigField 'String', 'MOVIE_DB_API_KEY', 'Your API Key'
     }
     repositories {
         mavenCentral()
