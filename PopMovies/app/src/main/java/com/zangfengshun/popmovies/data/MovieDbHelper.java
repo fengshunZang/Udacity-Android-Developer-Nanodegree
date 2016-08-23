@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Movie;
 
 import com.zangfengshun.popmovies.item.MovieItem;
 
@@ -86,6 +87,13 @@ public class MovieDbHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return moviesList;
+    }
+
+    //This method is used to delete a single movie item from database.
+    public void deleteMovieItem(MovieItem item) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(MovieDbContractor.MovieEntry.TABLE_NAME, MovieDbContractor.MovieEntry.COLUMN_NAME_MOVIE_ID + " =?", new String[]{item.getID()});
+        db.close();
     }
 
     //This method is used to delete the whole table.

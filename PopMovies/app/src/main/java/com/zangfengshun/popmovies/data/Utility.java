@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.zangfengshun.popmovies.BuildConfig;
 import com.zangfengshun.popmovies.item.MovieItem;
+import com.zangfengshun.popmovies.item.TrailerItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -152,5 +153,40 @@ public class Utility {
             movieData.add(item);
         }
         return movieData;
+    }
+
+    //This method fetches movie trailer's Info from raw json string file.
+    public static ArrayList<TrailerItem> getTrailerInfoFromJson(String jsonStr) throws JSONException {
+        final String TAG_RESULT = "results";
+        final String TAG_KEY = "key";
+        final String TAG_NAME = "name";
+
+        ArrayList<TrailerItem> trailerData = new ArrayList<>();
+        JSONObject jsonObject = new JSONObject(jsonStr);
+        JSONArray resultArray = jsonObject.getJSONArray(TAG_RESULT);
+        for (int i = 0; i < resultArray.length(); i++) {
+            JSONObject currentObj = resultArray.getJSONObject(i);
+            String key = currentObj.getString(TAG_KEY);
+            String name = currentObj.getString(TAG_NAME);
+
+            TrailerItem item = new TrailerItem(key, name);
+            trailerData.add(item);
+        }
+        return trailerData;
+    }
+
+    //This method fetches the url string of the movie's review from raw json string.
+    public static String getReviewStrFromJson(String jsonStr) throws JSONException {
+        final String TAG_RESULT = "results";
+        final String TAG_CONTENT = "content";
+
+        JSONObject jsonObject = new JSONObject(jsonStr);
+        String reviewStr = null;
+        JSONArray resultArray = jsonObject.getJSONArray(TAG_RESULT);
+        for (int i = 0; i < resultArray.length(); i++) {
+            JSONObject currentObj = resultArray.getJSONObject(i);
+            reviewStr = currentObj.getString(TAG_CONTENT);
+        }
+        return reviewStr;
     }
 }

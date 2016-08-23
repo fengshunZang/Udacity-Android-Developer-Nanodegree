@@ -2,16 +2,12 @@ package com.zangfengshun.popmovies;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-   private boolean mTwoPane = false;
-    //private FetchMoviesData.OptionsItemType mItemType = FetchMoviesData.OptionsItemType.POPULAR;
+    private boolean mTwoPane = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +25,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public boolean isTwoPane() {
-       return mTwoPane;
-   }
+        return mTwoPane;
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-       getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 }
