@@ -35,7 +35,7 @@ dependencies {
   compile('com.github.afollestad.material-dialogs:core:0.8.5.7@aar') {
     transitive = true
   }
-  compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
+  compile 'com.github.PhilJay:MPAndroidChart:v2.2.5'
   compile 'com.squareup.retrofit2:retrofit:2.1.0'
   compile 'com.squareup.retrofit2:converter-gson:2.1.0'
   compile 'com.google.code.gson:gson:2.7'

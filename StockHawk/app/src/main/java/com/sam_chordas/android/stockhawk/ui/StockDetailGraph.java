@@ -53,7 +53,8 @@ public class StockDetailGraph extends AppCompatActivity {
         Intent intent = getIntent();
         mSymbol = intent.getStringExtra(QuoteColumns.SYMBOL);
         Log.v(LOG_TAG, mSymbol);
-        mListType = new TypeToken<List<Stock>>() {}.getType();
+        mListType = new TypeToken<List<Stock>>() {
+        }.getType();
 
         //Set StartDate and EndDate of the line chart.
         Calendar cal = Calendar.getInstance();
@@ -67,7 +68,7 @@ public class StockDetailGraph extends AppCompatActivity {
         Log.v("end date", mEndDate);
 
         //Inflate LineChart View.
-        mLineChart = (LineChart)findViewById(R.id.chart);
+        mLineChart = (LineChart) findViewById(R.id.chart);
 
 //        Gson gson = new GsonBuilder()
 //                .registerTypeAdapter(Stock.class, new StockDeserializer())
@@ -80,7 +81,7 @@ public class StockDetailGraph extends AppCompatActivity {
                 .build();
         StockDataPoint stockDataPoint = retrofit.create(StockDataPoint.class);
 
-        String query = "select * from yahoo.finance.historicaldata where symbol = \'" + mSymbol +"\' and startDate = \'" + mStartDate + "\' and endDate = \'" + mEndDate + "\'";
+        String query = "select * from yahoo.finance.historicaldata where symbol = \'" + mSymbol + "\' and startDate = \'" + mStartDate + "\' and endDate = \'" + mEndDate + "\'";
         Call<List<Stock>> call = stockDataPoint.getData(query);
         call.enqueue(new Callback<List<Stock>>() {
             @Override
@@ -88,13 +89,22 @@ public class StockDetailGraph extends AppCompatActivity {
                 Log.v(LOG_TAG, response.raw().toString());
 
                 mItems = response.body();
+//                if (mItems == null) {
+//                    Log.v(LOG_TAG, "items are null");
+//                } else {
+//                    for(Stock item: mItems) {
+//                        Log.v(LOG_TAG, item.getClose());
+//                    }
+//                }
+
                 displayChart();
             }
 
             @Override
             public void onFailure(Call<List<Stock>> call, Throwable t) {
                 Log.v(LOG_TAG, "Callback failed.");
-                Toast.makeText(getApplicationContext(), "No Infomation found" , Toast.LENGTH_LONG).show();
+                t.printStackTrace();
+                Toast.makeText(getApplicationContext(), "No Infomation found", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -103,18 +113,19 @@ public class StockDetailGraph extends AppCompatActivity {
         XAxis xAxis = mLineChart.getXAxis();
         xAxis.setTextSize(11f);
 
-        //ArrayList<String> xVals = new ArrayList<>();
-        ArrayList<Entry> entries = new ArrayList<>();
+        ArrayList<String> xVals = new ArrayList<>();
+        ArrayList<Entry> yVals = new ArrayList<>();
 
-        Collections.reverse(mItems);
-
+        //Collections.reverse(mItems);
+        Log.v(LOG_TAG, String.valueOf(mItems.size()));
         for (int i = 0; i < mItems.size(); i++) {
-            //xVals.add(i, mItems.get(i).getDate());
-            entries.add(new Entry(Float.valueOf(mItems.get(i).getDate()), Float.valueOf(mItems.get(i).getClose())));
+            xVals.add(i, mItems.get(i).getDate());
+            Log.v(LOG_TAG, mItems.get(i).getDate());
+            yVals.add(new Entry(Float.valueOf(mItems.get(i).getClose()), i));
         }
 
-        LineDataSet dataSet = new LineDataSet(entries, mSymbol);
-        LineData lineData = new LineData(dataSet);
+        LineDataSet dataSet = new LineDataSet(yVals, mSymbol);
+        LineData lineData = new LineData(xVals, dataSet);
         mLineChart.setData(lineData);
         mLineChart.setDescription("Stock price over time.");
         mLineChart.setDescriptionTextSize(15f);

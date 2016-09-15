@@ -19,7 +19,7 @@ public class StockDeserializer implements JsonDeserializer<List<Stock>> {
         return new Gson().fromJson(
             json
                 .getAsJsonObject().get("query")
-                .getAsJsonObject().get("result")
+                .getAsJsonObject().get("results")
                 .getAsJsonObject().get("quote")
                 .getAsJsonArray(), typeOfT);
     }
