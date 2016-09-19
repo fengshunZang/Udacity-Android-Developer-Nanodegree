@@ -1,11 +1,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#09C"
     android:padding="@dimen/widget_margin">
 
     <LinearLayout
-        android:id="@+id/widget"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#bbDEDFDE"
@@ -22,10 +22,10 @@
 
             <ImageView
                 android:id="@+id/widget_img_launcher"
-                android:contentDescription="@string/app_name"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
+                android:contentDescription="@string/app_name"
                 android:src="@mipmap/stocks_icon" />
 
             <TextView
@@ -43,6 +43,6 @@
         <ListView
             android:id="@+id/widget_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </LinearLayout>
 </FrameLayout>

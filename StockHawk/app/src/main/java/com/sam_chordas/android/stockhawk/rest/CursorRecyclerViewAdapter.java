@@ -1,9 +1,12 @@
 package com.sam_chordas.android.stockhawk.rest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.support.v7.widget.RecyclerView;
+
+import com.sam_chordas.android.stockhawk.service.StockTaskService;
 
 /**
  * Created by sam_chordas on 10/6/15.

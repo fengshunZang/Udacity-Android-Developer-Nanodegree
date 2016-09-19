@@ -50,6 +50,13 @@ public class StockHawkWidget extends AppWidgetProvider {
             //Get the layout for the App Widget and set onClick Listener to the widget.
             remoteViews.setOnClickPendingIntent(R.id.widget, pendingIntent);
 
+            //choose corresponding constructors for different version.
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                setRemoteAdapter(context, remoteViews);
+            } else {
+                setRemoteAdapterV11(context, remoteViews);
+            }
+
 //            Intent clickIntentTemplate = new Intent(context, DetailGraphActivity.class);
 //            PendingIntent clickPendingIntentTemplate = TaskStackBuilder.create(context)
 //                    .addNextIntentWithParentStack(clickIntentTemplate)
@@ -89,17 +96,12 @@ public class StockHawkWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if (StockTaskService.ACTION_DATA_UPDATED.equals(intent.getAction())) {
+        if (MyStocksActivity.ACTION_DATA_UPDATED.equals(intent.getAction())) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
                     new ComponentName(context, getClass()));
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_list);
         }
-//        if (intent.getAction().equals(StockAppWidgetProvider.DETAIL_ACTION)) {
-//            int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
-//                    AppWidgetManager.INVALID_APPWIDGET_ID);
-//            Log.e("Symbol", intent.getStringExtra(QuoteColumns.SYMBOL));
-//            context.startActivity(intent);
     }
 }
 

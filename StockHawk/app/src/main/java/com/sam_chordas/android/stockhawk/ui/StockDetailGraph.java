@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewStub;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -46,6 +49,7 @@ public class StockDetailGraph extends AppCompatActivity {
     private List<Stock> mItems;
     private Type mListType;
     private LineChart mLineChart;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +72,9 @@ public class StockDetailGraph extends AppCompatActivity {
 
         //Inflate LineChart View.
         mLineChart = (LineChart) findViewById(R.id.chart);
+
+        mProgressBar = (ProgressBar)findViewById(R.id.loading_icon);
+        mProgressBar.setVisibility(ViewStub.VISIBLE);
 
 //        Gson gson = new GsonBuilder()
 //                .registerTypeAdapter(Stock.class, new StockDeserializer())
@@ -95,7 +102,7 @@ public class StockDetailGraph extends AppCompatActivity {
 //                        Log.v(LOG_TAG, item.getClose());
 //                    }
 //                }
-
+                mProgressBar.setVisibility(View.GONE);
                 displayChart();
             }
 
