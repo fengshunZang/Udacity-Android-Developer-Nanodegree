@@ -12,4 +12,11 @@
   <string name="input_prefill"></string>
   <string name="network_toast">Uh-oh! This app requires an internet connection</string>
   <string name="floating_button_description">Add a stock to your list.</string>
+  <string name="graph_description">Stock Price Over Time.</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+  <string name="string_symbol"  translatable="false">symbol</string>
+  <string name="string_set_background_resource" translatable="false">setBackgroundResource</string>
+  <string name="string_bid_price">bid price</string>
+  <string name="string_change">change</string>
 </resources>

@@ -38,6 +38,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StockDetailGraph extends AppCompatActivity {
     private final String LOG_TAG = StockDetailGraph.class.getSimpleName();
+    private final String BASE_URL = "https://query.yahooapis.com/";
+    private final String DATE_FORMAT = "yyyy-MM-dd";
     private String mSymbol;
     private String mStartDate;
     private String mEndDate;
@@ -59,13 +61,10 @@ public class StockDetailGraph extends AppCompatActivity {
         //Set StartDate and EndDate of the line chart.
         Calendar cal = Calendar.getInstance();
         Date currentDate = cal.getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
         mEndDate = simpleDateFormat.format(currentDate);
         cal.add(Calendar.MONTH, -1);
         mStartDate = simpleDateFormat.format(cal.getTime());
-
-        Log.v("start date", mStartDate);
-        Log.v("end date", mEndDate);
 
         //Inflate LineChart View.
         mLineChart = (LineChart) findViewById(R.id.chart);
@@ -75,7 +74,7 @@ public class StockDetailGraph extends AppCompatActivity {
 //                .create();
         //Use Retrofit to establish HTTP connection to fetch stock data.
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://query.yahooapis.com/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().registerTypeAdapter(
                         mListType, new StockDeserializer()).create()))
                 .build();
@@ -127,9 +126,10 @@ public class StockDetailGraph extends AppCompatActivity {
         LineDataSet dataSet = new LineDataSet(yVals, mSymbol);
         LineData lineData = new LineData(xVals, dataSet);
         mLineChart.setData(lineData);
-        mLineChart.setDescription("Stock price over time.");
+        mLineChart.setDescription(getResources().getString(R.string.graph_description));
         mLineChart.setDescriptionTextSize(15f);
         mLineChart.getLegend().setTextSize(12f);
+        mLineChart.setBackgroundColor(getResources().getColor(R.color.material_blue_500));
         mLineChart.setPinchZoom(false);
         mLineChart.invalidate();
     }

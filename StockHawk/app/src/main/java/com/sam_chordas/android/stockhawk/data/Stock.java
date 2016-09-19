@@ -1,19 +1,32 @@
 package com.sam_chordas.android.stockhawk.data;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Zang on 2016-09-14.
  */
 public class Stock {
+    @SerializedName("Symbol")
     private String mSymbol;
+    @SerializedName("Date")
     private String mDate;
+    @SerializedName("Open")
     private String mOpen;
+    @SerializedName("High")
     private String mHigh;
+    @SerializedName("Low")
     private String mLow;
+    @SerializedName("Close")
     private String mClose;
+    @SerializedName("Volume")
     private String mVolume;
+    @SerializedName("Adj_Close")
     private String mAdj_Close;
+    @SerializedName("Bid_Price")
     private String mBid_Price;
+    @SerializedName("Change")
     private String mChange;
+    @SerializedName("Percent_Change")
     private String mPercent_Change;
 
     public Stock(String symbol, String date, String open, String high, String low, String close,
@@ -30,6 +43,9 @@ public class Stock {
         this.mChange = change;
         this.mPercent_Change = percent_change;
     }
+
+    //Empty constructor
+    public Stock() {}
 
     public String getSymbol() {
         return mSymbol;

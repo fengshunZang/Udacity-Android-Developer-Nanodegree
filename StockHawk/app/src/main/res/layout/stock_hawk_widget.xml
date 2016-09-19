@@ -1,0 +1,48 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#09C"
+    android:padding="@dimen/widget_margin">
+
+    <LinearLayout
+        android:id="@+id/widget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#bbDEDFDE"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/widget_layout_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#aaDEDFDE"
+            android:orientation="horizontal"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp">
+
+            <ImageView
+                android:id="@+id/widget_img_launcher"
+                android:contentDescription="@string/app_name"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/stocks_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingEnd="@dimen/widget_header_padding"
+                android:paddingStart="@dimen/widget_header_padding"
+                android:text="@string/app_name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/widget_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</FrameLayout>

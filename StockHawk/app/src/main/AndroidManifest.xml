@@ -27,7 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.StockDetailGraph"
+        <activity
+            android:name=".ui.StockDetailGraph"
             android:label="@string/activity_detail_name"
             android:parentActivityName=".ui.MyStocksActivity" />
 
@@ -46,7 +47,19 @@
             android:authorities="com.sam_chordas.android.stockhawk.data.QuoteProvider"
             android:exported="false" />
 
+        <receiver android:name="com.example.sam_chordas.stockhawk.StockHawkWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="ACTION__DATA_UPDATED"/>
+            </intent-filter>
 
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/stock_hawk_widget_info" />
+        </receiver>
+
+        <service android:name="com.example.sam_chordas.stockhawk.WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>
