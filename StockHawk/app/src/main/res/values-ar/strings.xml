@@ -14,4 +14,15 @@
     <string name="network_toast">اه اوه! هذا التطبيق يتطلب اتصال بالإنترنت</string>
     <string name="floating_button_description">إضافة الأسهم إلى قائمتك.</string>
     <string name="graph_description">سعر السهم على مر الزمن .</string>
+    <string name="appwidget_text">مثال</string>
+    <string name="add_widget">إضافة القطعة</string>
+    <string name="string_symbol" translatable="false">symbol</string>
+    <string name="string_set_background_resource" translatable="false">setBackgroundResource</string>
+    <string name="string_bid_price">سعر</string>
+    <string name="string_change">تغيير</string>
+    <!--Empty Weather Database -->
+    <string name="empty_stock_list">لا يوجد مخزون معلومات متوفرة</string>
+    <string name="empty_stock_list_no_network">لا معلومات الأوراق المالية المتاحة. الشبكة غير متوفرة لجلب بيانات المخزون.</string>
+    <string name="pref_invalid_stock_symbol" translatable="false">invalid_stock_symbol</string>
+    <string name="try_again">حاول مرة اخرى.</string>
 </resources>

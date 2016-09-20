@@ -1,26 +1,29 @@
 <resources>
-  <string name="app_name">Stock Hawk</string>
-  <string name="activity_detail_name">Stock Detail</string>
+    <string name="app_name">Stock Hawk</string>
+    <string name="activity_detail_name">Stock Detail</string>
 
-  <string name="action_example">Example action</string>
+    <string name="action_example">Example action</string>
 
-  <string name="action_settings">Settings</string>
-  <string name="action_change_units">Change Units</string>
-  <string name="symbol_search">Symbol Search</string>
-  <string name="content_test">Search for a Stock Symbol</string>
-  <string name="input_hint">FB</string>
-  <string name="input_prefill"></string>
-  <string name="network_toast">Uh-oh! This app requires an internet connection</string>
-  <string name="floating_button_description">Add a stock to your list.</string>
-  <string name="graph_description">Stock Price Over Time.</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_change_units">Change Units</string>
+    <string name="symbol_search">Symbol Search</string>
+    <string name="content_test">Search for a Stock Symbol</string>
+    <string name="input_hint">FB</string>
+    <string name="input_prefill"></string>
+    <string name="network_toast">Uh-oh! This app requires an internet connection</string>
+    <string name="floating_button_description">Add a stock to your list.</string>
+    <string name="graph_description">Stock Price Over Time.</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
-  <string name="string_symbol"  translatable="false">symbol</string>
-  <string name="string_set_background_resource" translatable="false">setBackgroundResource</string>
-  <string name="string_bid_price">bid price</string>
-  <string name="string_change">change</string>
-  <!--Empty Weather Database -->
-  <string name="empty_stock_list">No Stock Information Available</string>
-  <string name="empty_stock_list_no_network">No stock information available. The network is not available to fetch stock data.</string>
+    <string name="string_symbol" translatable="false">symbol</string>
+    <string name="string_set_background_resource" translatable="false">setBackgroundResource</string>
+    <string name="string_bid_price">bid price</string>
+    <string name="string_change">change</string>
+    <!--Empty Weather Database -->
+    <string name="empty_stock_list">No Stock Information Available</string>
 
+    <string name="no_add_symbol">Could not find symbol</string>
+    <string name="empty_stock_list_no_network">No stock information available. The network is not available to fetch stock data.</string>
+    <string name="pref_invalid_stock_symbol" translatable="false">invalid_stock_symbol</string>
+    <string name="try_again">Please try again</string>
 </resources>

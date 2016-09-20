@@ -4,7 +4,9 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -15,7 +17,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +31,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
+import com.sam_chordas.android.stockhawk.rest.NetworkChangeReceiver;
 import com.sam_chordas.android.stockhawk.rest.QuoteCursorAdapter;
 import com.sam_chordas.android.stockhawk.rest.RecyclerViewItemClickListener;
 import com.sam_chordas.android.stockhawk.rest.Utils;
@@ -38,7 +43,7 @@ import com.google.android.gms.gcm.Task;
 import com.melnykov.fab.FloatingActionButton;
 import com.sam_chordas.android.stockhawk.touch_helper.SimpleItemTouchHelperCallback;
 
-public class MyStocksActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MyStocksActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -51,7 +56,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     private CharSequence mTitle;
     private Intent mServiceIntent;
     private ItemTouchHelper mItemTouchHelper;
-    private static final int CURSOR_LOADER_ID = 0;
+    public static final int CURSOR_LOADER_ID = 0;
     private QuoteCursorAdapter mCursorAdapter;
     private Context mContext;
     private Cursor mCursor;
@@ -82,6 +87,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 networkToast();
             }
         }
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
@@ -113,33 +119,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
             public void onClick(View v) {
                 isConnected = Utils.isNetWorkAvailable(mContext);
                 if (isConnected) {
-                    new MaterialDialog.Builder(mContext).title(R.string.symbol_search)
-                            .content(R.string.content_test)
-                            .inputType(InputType.TYPE_CLASS_TEXT)
-                            .input(R.string.input_hint, R.string.input_prefill, new MaterialDialog.InputCallback() {
-                                @Override
-                                public void onInput(MaterialDialog dialog, CharSequence input) {
-                                    // On FAB click, receive user input. Make sure the stock doesn't already exist
-                                    // in the DB and proceed accordingly
-                                    Cursor c = getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
-                                            new String[]{QuoteColumns.SYMBOL}, QuoteColumns.SYMBOL + "= ?",
-                                            new String[]{input.toString()}, null);
-                                    if (c.getCount() != 0) {
-                                        Toast toast =
-                                                Toast.makeText(MyStocksActivity.this, "This stock is already saved!",
-                                                        Toast.LENGTH_LONG);
-                                        toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
-                                        toast.show();
-                                        return;
-                                    } else {
-                                        // Add the stock to DB
-                                        mServiceIntent.putExtra("tag", "add");
-                                        mServiceIntent.putExtra("symbol", input.toString());
-                                        startService(mServiceIntent);
-                                    }
-                                }
-                            })
-                            .show();
+                    promptForSymbol("");
                 } else {
                     networkToast();
                 }
@@ -153,11 +133,11 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
         mTitle = getTitle();
         if (isConnected) {
-            long period = 3600L;
+            long period = 60L;
             long flex = 10L;
             String periodicTag = "periodic";
 
-            // create a periodic task to pull stocks once every hour after the app has been opened. This
+            // create a periodic task to pull stocks once every minute after the app has been opened. This
             // is so Widget data stays up to date.
             PeriodicTask periodicTask = new PeriodicTask.Builder()
                     .setService(StockTaskService.class)
@@ -170,6 +150,12 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
             // Schedule task with tag "periodic." This ensure that only the stocks present in the DB
             // are updated.
             GcmNetworkManager.getInstance(this).schedule(periodicTask);
+
+//            //Register receiver to listen to the internet status.
+//            registerReceiver(
+//                    new NetworkChangeReceiver(this),
+//                    new IntentFilter(
+//                            ConnectivityManager.CONNECTIVITY_ACTION));
         }
     }
 
@@ -178,7 +164,17 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     public void onResume() {
         super.onResume();
         getLoaderManager().restartLoader(CURSOR_LOADER_ID, null, this);
+        SharedPreferences settings = getSharedPreferences(Utils.STOCK_HAWK_PREFS, 0);
+        settings.registerOnSharedPreferenceChangeListener(this);
     }
+
+    @Override
+    public void onPause() {
+        SharedPreferences settings = getSharedPreferences(Utils.STOCK_HAWK_PREFS, 0);
+        //settings.unregisterOnSharedPreferenceChangeListener(this);
+        super.onPause();
+    }
+
 
     public void networkToast() {
         Toast.makeText(mContext, getString(R.string.network_toast), Toast.LENGTH_SHORT).show();
@@ -261,6 +257,48 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
             mRecyclerView.setVisibility(View.VISIBLE);
             mEmptyView.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        String symbol = getSharedPreferences(Utils.STOCK_HAWK_PREFS, 0).getString(getString(R.string.pref_invalid_stock_symbol), "");
+        Log.v("symbol", symbol);
+        if (!symbol.isEmpty()) {
+            promptForSymbol(getString(R.string.no_add_symbol) + symbol + "\n" + getString(R.string.try_again) + "\n\n");
+        }
+    }
+
+    private void promptForSymbol(String extraText) {
+        String prompt = extraText + getResources().getString(R.string.content_test);
+        Log.v("MyStocksActivity", prompt);
+
+        new MaterialDialog.Builder(mContext).title(R.string.symbol_search)
+                .content(prompt)
+                .inputType(InputType.TYPE_CLASS_TEXT)
+                .input(R.string.input_hint, R.string.input_prefill, new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                        // On FAB click, receive user input. Make sure the stock doesn't already exist
+                        // in the DB and proceed accordingly
+                        Cursor c = getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
+                                new String[]{QuoteColumns.SYMBOL}, QuoteColumns.SYMBOL + "= ?",
+                                new String[]{input.toString()}, null);
+                        if (c.getCount() != 0) {
+                            Toast toast =
+                                    Toast.makeText(MyStocksActivity.this, "This stock is already saved!",
+                                            Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
+                            toast.show();
+                            return;
+                        } else {
+                            // Add the stock to DB
+                            mServiceIntent.putExtra("tag", "add");
+                            mServiceIntent.putExtra("symbol", input.toString());
+                            startService(mServiceIntent);
+                        }
+                    }
+                })
+                .show();
     }
 }
 
