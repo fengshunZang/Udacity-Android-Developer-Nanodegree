@@ -132,7 +132,10 @@ public class StockTaskService extends GcmTaskService {
                     }
                     ArrayList<ContentProviderOperation> stockSymbols = Utils.quoteJsonToContentVals(getResponse);
                     if (stockSymbols.size() == 0) {
+                        //If this list is empty, it means that the symbol input is invalid and
+                        //no results response.
                         result = GcmNetworkManager.RESULT_FAILURE;
+                        //Save the invalid symbol into sharedPreference and display it in the dialog.
                         Utils.saveStockTaskResultInSharedPreferences(mContext, stockSymbol, false);
                     } else {
                         Utils.saveStockTaskResultInSharedPreferences(mContext, stockSymbol, true);
@@ -146,7 +149,6 @@ public class StockTaskService extends GcmTaskService {
                 e.printStackTrace();
             }
         }
-
         return result;
     }
 

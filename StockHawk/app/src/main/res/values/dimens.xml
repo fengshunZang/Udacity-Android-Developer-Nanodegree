@@ -13,4 +13,7 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     -->
     <dimen name="widget_margin">8dp</dimen>
     <dimen name="widget_header_padding">16dp</dimen>
+    <dimen name="list_item_layout_height">72dp</dimen>
+    <dimen name="list_item_quote_text1">10dp</dimen>
+    <dimen name="list_item_quote_text2">3dp</dimen>
 </resources>

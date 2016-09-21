@@ -12,6 +12,7 @@
     <string name="input_hint">FB</string>
     <string name="input_prefill"></string>
     <string name="network_toast">اه اوه! هذا التطبيق يتطلب اتصال بالإنترنت</string>
+    <string name="duplicate_stock_toast">يتم حفظ هذه الأسهم بالفعل!</string>
     <string name="floating_button_description">إضافة الأسهم إلى قائمتك.</string>
     <string name="graph_description">سعر السهم على مر الزمن .</string>
     <string name="appwidget_text">مثال</string>
@@ -25,4 +26,5 @@
     <string name="empty_stock_list_no_network">لا معلومات الأوراق المالية المتاحة. الشبكة غير متوفرة لجلب بيانات المخزون.</string>
     <string name="pref_invalid_stock_symbol" translatable="false">invalid_stock_symbol</string>
     <string name="try_again">حاول مرة اخرى.</string>
+    <string name="recyclerView_description">ويوضح وجهة النظر هذه قائمة الأسهم التي اخترتها.</string>
 </resources>

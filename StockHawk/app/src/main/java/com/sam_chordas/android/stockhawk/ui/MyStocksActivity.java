@@ -26,7 +26,6 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.sam_chordas.android.stockhawk.R;
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
@@ -75,6 +74,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
         isConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
         setContentView(R.layout.activity_my_stocks);
+
         // The intent service is for executing immediate pulls from the Yahoo API
         // GCMTaskService can only schedule tasks, they cannot execute immediately
         mServiceIntent = new Intent(this, StockIntentService.class);
@@ -90,9 +90,10 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setContentDescription(getResources().getString(R.string.recyclerView_description));
         getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
 
-        //Set emptyView for recyclerView
+        //Inflate TextView for recyclerView to display message if no data available.
         mEmptyView = (TextView) findViewById(R.id.recycler_view_empty);
 
         mCursorAdapter = new QuoteCursorAdapter(this, null);
@@ -100,6 +101,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 new RecyclerViewItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View v, int position) {
+                        //Click item to navigate to detail activity which shows a graph about bid price changing in a month.
                         mCursor = mCursorAdapter.getCursor();
                         mCursor.moveToPosition(position);
                         Intent intent = new Intent(mContext, StockDetailGraph.class);
@@ -110,7 +112,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
         mRecyclerView.setAdapter(mCursorAdapter);
 
-
+        //FloatingActionButton controls the addition of new stock.
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.attachToRecyclerView(mRecyclerView);
         fab.setContentDescription(getResources().getString(R.string.floating_button_description));
@@ -123,7 +125,6 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 } else {
                     networkToast();
                 }
-
             }
         });
 
@@ -150,15 +151,8 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
             // Schedule task with tag "periodic." This ensure that only the stocks present in the DB
             // are updated.
             GcmNetworkManager.getInstance(this).schedule(periodicTask);
-
-//            //Register receiver to listen to the internet status.
-//            registerReceiver(
-//                    new NetworkChangeReceiver(this),
-//                    new IntentFilter(
-//                            ConnectivityManager.CONNECTIVITY_ACTION));
         }
     }
-
 
     @Override
     public void onResume() {
@@ -171,7 +165,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     @Override
     public void onPause() {
         SharedPreferences settings = getSharedPreferences(Utils.STOCK_HAWK_PREFS, 0);
-        //settings.unregisterOnSharedPreferenceChangeListener(this);
+        settings.unregisterOnSharedPreferenceChangeListener(this);
         super.onPause();
     }
 
@@ -270,7 +264,6 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
     private void promptForSymbol(String extraText) {
         String prompt = extraText + getResources().getString(R.string.content_test);
-        Log.v("MyStocksActivity", prompt);
 
         new MaterialDialog.Builder(mContext).title(R.string.symbol_search)
                 .content(prompt)
@@ -285,7 +278,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                                 new String[]{input.toString()}, null);
                         if (c.getCount() != 0) {
                             Toast toast =
-                                    Toast.makeText(MyStocksActivity.this, "This stock is already saved!",
+                                    Toast.makeText(MyStocksActivity.this, getResources().getString(R.string.duplicate_stock_toast),
                                             Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
                             toast.show();

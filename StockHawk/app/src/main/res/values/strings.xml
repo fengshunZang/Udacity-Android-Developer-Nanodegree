@@ -11,6 +11,7 @@
     <string name="input_hint">FB</string>
     <string name="input_prefill"></string>
     <string name="network_toast">Uh-oh! This app requires an internet connection</string>
+    <string name="duplicate_stock_toast">This stock is already saved!</string>
     <string name="floating_button_description">Add a stock to your list.</string>
     <string name="graph_description">Stock Price Over Time.</string>
     <string name="appwidget_text">EXAMPLE</string>
@@ -26,4 +27,5 @@
     <string name="empty_stock_list_no_network">No stock information available. The network is not available to fetch stock data.</string>
     <string name="pref_invalid_stock_symbol" translatable="false">invalid_stock_symbol</string>
     <string name="try_again">Please try again</string>
+    <string name="recyclerView_description">This view shows a list of your selected stocks.</string>
 </resources>
