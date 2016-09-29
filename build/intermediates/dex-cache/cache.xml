@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="a18d6f882131a02e127360688c783bba7c422d00">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_979f7b70b4e20d57b6878171ac93b1819d1889f4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_c64d65dada8d5e93cd8a3b822fb8e5f1f2ad3457\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="fed803c0bd0e1d1cb43b4c04063c8721521a2949">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_16d31c073469a5f3aabb36dd15a42d0dda458b00\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_5fb9734f29f0d03f73143cf669932fc9d0a19da8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads-lite\9.6.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="6ff796a3173787afe2e712f3aec6f5b99796118e">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-lite-9.6.1_e7f0b47786f084f3d70c793c6e0547e2316f47e2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-clearcut\9.6.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="ee0ccb43f6ab276191b7f2d77c305fa9beb26db9">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-clearcut-9.6.1_29ff23f910ed92cd1662ea9194391b2f535dfef1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_faad9082eb062a1b8e3d2af84a2cdc534cc217c7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Zang\.gradle\caches\modules-2\files-2.1\com.google.oauth-client\google-oauth-client\1.20.0\1d086ac5756475ddf451af2e2df6e288d18608ca\google-oauth-client-1.20.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="1d086ac5756475ddf451af2e2df6e288d18608ca">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-oauth-client-1.20.0_37a6790ec8518e435b6bf850743cb911f9f52770\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_6432dcac9ef84398de00fd3e630082c80fde199c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gass\9.6.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="ee61ace5f3e488fc610e1c67693c49186a441f32">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gass-9.6.1_716ae443068432fc624d471715d0ae87ec0b89d7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Zang\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client\1.20.0\93d82db2bca534960253f43424b2ba9d7638b4d2\google-http-client-1.20.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="93d82db2bca534960253f43424b2ba9d7638b4d2">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-http-client-1.20.0_02a632fdb4565a3af4e042125a2e1a0e00507ae1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.6.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="eccaaa9ffa6bb4bfbd2e870f01aaf69655d353be">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.6.1_bb1226ceca5d2c7db05daa5d688de54984ea0b8e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.6.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="4a36600281a648769411ef642c331851732bf29e">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-9.6.1_cebb87f6bf532d9797bfa0a81036e144d25dd40d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Zang\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client-jackson2\1.20.0\2408070b2abec043624d35b35e30450f1b663858\google-http-client-jackson2-1.20.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="2408070b2abec043624d35b35e30450f1b663858">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-http-client-jackson2-1.20.0_784d5646c801372571b8c55aeb32158a85bec21f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_1dbd835621e2c62b9b2cbe9806aaab6d67229616\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Zang\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.1.3\f6c3aed1cdfa21b5c1737c915186ea93a95a58bd\jackson-core-2.1.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f6c3aed1cdfa21b5c1737c915186ea93a95a58bd">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-core-2.1.3_aa65632091f31ed884a5ed10e756fcacc727a370\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_7de71acf39cb2896e379f569b142579bd30358d3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_c617bda25c71314c3e759bd7954b55355e3a356f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Zang\.gradle\caches\modules-2\files-2.1\com.google.api-client\google-api-client\1.20.0\d3e66209ae9e749b2d6833761e7885f60f285564\google-api-client-1.20.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="d3e66209ae9e749b2d6833761e7885f60f285564">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-api-client-1.20.0_3276dadcbc354fb94c79218de0d6928ea1c3fd11\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_7fe62446f7b3d45899c0b31cc510f8a7bed55194\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Zang\.gradle\caches\modules-2\files-2.1\com.google.api-client\google-api-client-android\1.20.0\5673179575c32b69a474334255c3044adf18d40\google-api-client-android-1.20.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="05673179575c32b69a474334255c3044adf18d40">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-api-client-android-1.20.0_d6d145288e7ddaa8ceba9ef065e44960dd785ce7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Zang\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client-android\1.20.0\313dc99a7963523871495897ca11aa8472b3c6fd\google-http-client-android-1.20.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="313dc99a7963523871495897ca11aa8472b3c6fd">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-http-client-android-1.20.0_16f640744b91fcb1e9f39d959b9325b8d1176cde\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_acfd6c9176c78622b2779cd7b2389b709c8d0c82\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Zang\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_937f1326caa6f4f56992179afd00d4a794344aeb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_9dcb0161fe210ffc2d3753bebc90ae9a29667e96\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_8ec3a19c5490cb5c0e40418e6177b4bc496f492f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_d373ec16b76f9c82cd0ce2fa08cc83298fd0ef3f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Zang\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\2.0.1\516c03b21d50a644d538de0f0369c620989cd8f0\jsr305-2.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\jsr305-2.0.1_5c87bae68aa0a7461804f53ec5723a367b3bf69c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_f35d461eae10560f4efd1b0b8a2fa00d52074283\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\9.6.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="47bbb3ec4b31ba71e125241c090dabe70cbb4de7">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-9.6.1_7806338798f711c0f8ded31fb0c6f64712dea7fe\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_cec34798dd876b8cfa2b74a41e5dd2f0b8d06f8e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Zang\.gradle\caches\modules-2\files-2.1\com.google.guava\guava-jdk5\13.0\381ae6c8add7c98e9bcddb1e0b898400cd6fc3f7\guava-jdk5-13.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="381ae6c8add7c98e9bcddb1e0b898400cd6fc3f7">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\guava-jdk5-13.0_f1a7dc9500569c2424544ed307dca59b8f2c9134\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.6.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="af7582c6b327449c6d32518e6a10307860b7b5d6">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.6.1_21d436b93077ec3f551870da9eca4cc391341f08\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="G:\Android_project\JokeTeller\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="G:\Android_project\JokeTeller\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_1c6b0c4943037510df9ceb2914852509b48112ab\classes.dex" />
+    </item>
+
+</items>
