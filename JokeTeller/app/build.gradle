@@ -5,17 +5,28 @@ android {
     buildToolsVersion "24.0.1"
 
     defaultConfig {
-        applicationId "com.udacity.gradle.builditbigger"
+        applicationId "com.udacity.gradle.com.udacity.gradle.builditbigger.com.udacity.gradle.builditbigger"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        free {
+            applicationId "com.udacity.gradle.builditbigger.free"
+        }
+        paid {
+            applicationId "com.udacity.gradle.builditbigger.paid"
         }
     }
 }
@@ -24,10 +35,14 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     //compile project(':javajokes')
     compile project(':jokedisplayactivity')
-    testCompile 'junit:junit:4.12'
     // Added for AdMob
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.google.android.gms:play-services-ads:9.6.1'
-    compile 'com.google.code.findbugs:jsr305:2.0.1'
     compile project(path: ':backend', configuration: 'android-endpoints')
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.google.code.findbugs:jsr305:2.0.1'
+    compile 'com.android.support:support-v4:24.2.1'
+    //testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support:support-annotations:24.2.1'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    freeCompile 'com.google.android.gms:play-services-ads:9.6.1'
 }

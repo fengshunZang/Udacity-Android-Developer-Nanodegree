@@ -7,17 +7,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
     Context mContext;
+    private ProgressBar mIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext = this;
+        mIndicator = (ProgressBar)findViewById(R.id.progress_indicator);
+        mIndicator.setVisibility(View.INVISIBLE);
     }
 
 
@@ -44,10 +48,12 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view) {
+        mIndicator.setVisibility(View.VISIBLE);
         new EndpointsAsyncTask(new OnTaskCompleted() {
             @Override
             public void onTaskCompleted(String s) {
             String aboutJoke = "LOL, new android library shows the joke.";
+                mIndicator.setVisibility(View.INVISIBLE);
             //Send an intent to carry the joke to jokedisplayactivity
             Intent intent = new Intent(mContext, com.zangfengshun.jokedisplayactivity.MainActivity.class);
             intent.putExtra("message", s);
