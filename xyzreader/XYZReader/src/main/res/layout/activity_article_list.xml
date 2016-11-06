@@ -1,14 +1,15 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Theme.Bacon"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:id="@+id/toolbar_container"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="112dp"-->
-        <!--android:background="?colorPrimary"-->
-        <!--android:elevation="8dp">-->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/theme_primary"
+        android:elevation="@dimen/toolbar_elevation">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -17,9 +18,9 @@
             android:layout_marginLeft="@dimen/list_toolbar_side_margin"
             android:layout_marginRight="@dimen/list_toolbar_side_margin"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:background="?colorPrimary"
-            android:elevation="8dp">
+            app:theme="@style/Theme.Bacon"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -27,12 +28,13 @@
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/logo" />
         </android.support.v7.widget.Toolbar>
-    <!--</android.support.design.widget.AppBarLayout>-->
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.v7.widget.RecyclerView
@@ -43,7 +45,7 @@
             android:paddingBottom="28dp"
             android:paddingLeft="@dimen/list_side_margin"
             android:paddingRight="@dimen/list_side_margin"
-            android:paddingTop="116dp"
+            android:paddingTop="16dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
         <!--android:scrollbarStyle="outsideOverlay" -->
     </android.support.v4.widget.SwipeRefreshLayout>
